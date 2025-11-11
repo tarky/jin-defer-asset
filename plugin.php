@@ -2,10 +2,10 @@
 /*
 Plugin Name: Jin defer asset
 Author: webfood
-Plugin URI: http://webfood.info/
+Plugin URI: https://webfood.info/
 Description: Jin defer asset
-Version: 0.1
-Author URI: http://webfood.info/
+Version: 0.2
+Author URI: https://webfood.info/
 Text Domain: Jin defer asset
 Domain Path: /languages
 
@@ -13,7 +13,7 @@ License:
  Released under the GPL license
   http://www.gnu.org/copyleft/gpl.html
 
-  Copyright 2021 (email : webfood.info@gmail.com)
+  Copyright 2025 (email : webfood.info@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -123,11 +123,13 @@ function my_deregister_scripts(){
 add_action( 'wp_footer', 'my_deregister_scripts' );
 
 if(!(is_admin())) {
- function add_async_to_enqueue_script($url) {
-  if(FALSE === strpos($url, '.js')) return $url;
-  return "$url' defer charset='UTF-8";
+ function add_async_to_enqueue_script($tag, $handle, $src) {
+  if(FALSE === strpos($src, '.js')) return $tag;
+  if(preg_match('/ async| defer/', $tag) === 1) return $tag;
+  return str_replace( '"></script>', '" defer></script>', $tag );
  }
- add_filter('clean_url', 'add_async_to_enqueue_script', 11, 1);
+
+ add_filter('script_loader_tag', 'add_async_to_enqueue_script', 10, 3);
 }
 
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
