@@ -86,7 +86,7 @@ if(!(is_admin())) {
 </script>
 EOM;
   }
-  add_action( 'shutdown', 'jin_script' );
+  add_action( 'wp_print_footer_scripts', 'jin_script' );
 }
 
 function output_inline_style() {
