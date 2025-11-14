@@ -481,8 +481,8 @@ footer {
     border: 2px solid; }
   .sns-design-type01 .sns .twitter a,
   .sns-design-type01 .sns-top .twitter a {
-    border-color: #00acee;
-    background: #00acee; }
+    border-color: #0F1419;
+    background: #0F1419; }
   .sns-design-type01 .sns .facebook a,
   .sns-design-type01 .sns-top .facebook a {
     border-color: #3b5998;
@@ -1191,3 +1191,75 @@ a.post-list-link {
           font-weight: 700;
           padding: 1px 7px;
           padding-top: 0; } }
+
+.cps-post .cps-post-header .cps-post-cat {
+  display: inline;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  color: #f8b500;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-right: 5px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.cps-post .cps-post-header .cps-post-cat a, .cps-post .cps-post-header .cps-post-cat span {
+  color: #fff !important;
+  border-radius: 15px;
+  line-height: 0;
+}
+
+@media (max-width: 767px) {
+  .cps-post .cps-post-header .cps-post-cat a, .cps-post .cps-post-header .cps-post-cat span {
+    padding: 3px 10px;
+    font-size: 0.65rem;
+    font-weight: 400;
+  }
+}
+@media (min-width: 768px) {
+  .cps-post .cps-post-header .cps-post-cat a, .cps-post .cps-post-header .cps-post-cat span {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    font-weight: 300;
+  }
+}
+
+.c--labeling-act {
+  display: flex;
+  justify-content: center;
+  margin: 0px auto 30px;
+  width: 100%;
+  padding: 9px;
+}
+.c--labeling-act.d--labeling-act-border {
+  border-width: 1px;
+  border-style: solid;
+}
+.c--labeling-act .a--labeling-act {
+  font-size: 10px;
+  letter-spacing: 0.1rem;
+}
+@media (max-width: 767px) {
+  .c--labeling-act .a--labeling-act {
+    letter-spacing: 0.06rem;
+  }
+}
+.c--labeling-act.d--labeling-act-strong {
+  padding: 12px;
+}
+.c--labeling-act.d--labeling-act-strong .a--labeling-act {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.a--labeling-small-act {
+  display: inline;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  color: #f8b500;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-right: 5px;
+  margin-left: -2px;
+  margin-bottom: 15px;
+}

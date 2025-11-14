@@ -33,7 +33,7 @@ License:
 
 //wp_headに追加
 function add_preload() {
-  echo '<link rel="preload" href="/wp-content/themes/jin/font/jin-icons/fonts/jin-icons.ttf?c16tcv" as="font" type="font/ttf" crossorigin>'."\n";
+  echo '<link rel="preload" href="'. get_template_directory_uri() .'/font/jin-icons/fonts/jin-icons.ttf?c16tcv" as="font" type="font/ttf" crossorigin>'."\n";
 }
 add_action('wp_head', 'add_preload');
 
@@ -106,9 +106,13 @@ function output_inline_style() {
 add_action( 'wp_enqueue_scripts', 'output_inline_style', -99);
 
 function my_remove_enqueue_style() {
-    wp_dequeue_style('swiper-style');
-    wp_dequeue_script('cps-swiper');
+    wp_deregister_style('swiper-style');
+    wp_deregister_script('cps-swiper');
+    wp_deregister_script('cps-common');
+    wp_deregister_script('jin-h-icons');
+    wp_deregister_script('cps-followwidget');
     wp_dequeue_style('crayon');
+
 }
 add_action( 'wp_enqueue_scripts', 'my_remove_enqueue_style', 11);
 
@@ -116,6 +120,16 @@ function crayon_enqueue_styles() {
   wp_enqueue_style('crayon');
 }
 add_action( 'wp_enqueue_scripts', 'crayon_enqueue_styles', 12 );
+
+function re_enqueue_required(){
+  wp_enqueue_script('cps-common', get_template_directory_uri() . '/js/common.js', array('jquery'), false, array('in_footer' => true,'strategy' => 'defer',));
+  wp_enqueue_script('jin-h-icons', get_template_directory_uri() . '/js/jin_h_icons.js', array('jquery'), false, array('in_footer' => true,'strategy' => 'defer',));
+ 
+  if(!is_single() || !wp_isset_widets('sidebar-tracking') || is_mobile()) return;
+	wp_enqueue_script('cps-followwidget', get_template_directory_uri() . '/js/followwidget.js', array('jquery'), false, array('in_footer' => true,'strategy' => 'defer',));
+}
+
+add_action( 'wp_enqueue_scripts', 're_enqueue_required', 13 );
 
 function my_deregister_scripts(){
   wp_deregister_script( 'wp-embed' );
